@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import BarChart from './BarChart/BarChart';
-import WorldMap from './WorldMap/WorldMap';
+import BarChart from './components/BarChart/BarChart';
+import WorldMap from './components/WorldMap/WorldMap';
+import productPerceivedQuality from './data/dailyProductPerceivedQuality';
 
 class App extends Component {
   render() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import worlddata from '../data/world';
+import worlddata from '../../data/world';
 import { geoMercator, geoPath } from 'd3';
 class WorldMap extends Component {
     render() {
