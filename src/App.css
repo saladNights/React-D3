@@ -9,6 +9,14 @@
   color: white;
 }
 
+.example{
+    display: inline-flex;
+    padding: 1em;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
 .example h2{
   color: #312f2b;
 }

@@ -1,0 +1,32 @@
+.map-scroller {
+    z-index: 100;
+    height: 50vh;
+    overflow: scroll;
+}
+#sticky {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 48%;
+    z-index: 50;
+}
+.panel {
+    width: 100%;
+    padding-left: 20px;
+    padding-top: 25vh;
+    padding-bottom: 25vh;
+}
+.panel p {padding-right: 50%;}
+.panel:first-child {padding-top: 5vh;}
+.panel:last-child {padding-bottom: 45vh;}
+
+.graticule {
+    fill: none;
+    stroke: #66941e;
+    stroke-opacity: .5;
+    stroke-width: .5px;
+}
+
+.land {
+    fill: #7f528c;
+}

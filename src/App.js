@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import BarChart from './components/BarChart/BarChart';
 import WorldMap from './components/WorldMap/WorldMap';
+import MapScroller from './components/MapScroller/MapScroller';
 import productPerceivedQuality from './data/dailyProductPerceivedQuality';
 
 class App extends Component {
@@ -18,6 +19,10 @@ class App extends Component {
             <div className="example">
                 <h2>Map</h2>
                 <WorldMap/>
+            </div>
+            <div className="example">
+                <h2>Map Scroller</h2>
+                <MapScroller/>
             </div>
         </div>
     );
