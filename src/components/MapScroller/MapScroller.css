@@ -12,9 +12,7 @@
 }
 .panel {
     width: 100%;
-    padding-left: 20px;
-    padding-top: 25vh;
-    padding-bottom: 25vh;
+    padding: 20px;
 }
 .panel p {padding-right: 50%;}
 .panel:first-child {padding-top: 5vh;}

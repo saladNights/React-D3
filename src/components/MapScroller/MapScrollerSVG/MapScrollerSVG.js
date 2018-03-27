@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import ReactDOM from "react-dom";
 import * as topojson from "topojson";
 import worldData from '../../../data/world-50m';
-// import trackData from '../../../data/track.json';
+import trackData from '../../../data/track.json';
 
 class MapScrollerSVG extends Component {
 
@@ -30,9 +30,15 @@ class MapScrollerSVG extends Component {
             .attr("class", "land")
             .attr("d", pathGenerator);
 
-        d3.json('../../../data/track.json', function(error, track) {
-            console.log(track);
-        });
+        const pathLine = d3.line()
+            .x(function(d) { return projection([d.lon, d.lat])[0]; })
+            .y(function(d) { return projection([d.lon, d.lat])[1]; });
+
+        d3.select(el).append("path")
+            .attr("d",pathLine(trackData))
+            .attr("fill","none")
+            .attr("stroke", '#ff9933')
+            .attr("stroke-width", 3);
     }
 
     render(){
