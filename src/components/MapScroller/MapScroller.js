@@ -15,9 +15,10 @@ class MapScroller extends Component {
     }
 
     componentDidMount(){
-        const scrollEl = document.getElementsByClassName("map-scroller")[0];
+        const scrollEl = document.getElementById('container');
+
         this.setState({
-            scrollLength: scrollEl.scrollHeight - this.props.height
+            scrollLength: scrollEl.scrollHeight - this.state.height
         });
     }
 
@@ -26,7 +27,7 @@ class MapScroller extends Component {
         return (
             <div className="map-scroller">
                 <div id="sticky">
-                    <MapScrollerSVG width={this.state.width} height={this.state.height}/>
+                    <MapScrollerSVG width={this.state.width} height={this.state.height} scrollLength={this.state.scrollLength}/>
                 </div>
                 <div id="container">
                     <div id="content">

@@ -1,8 +1,8 @@
 .map-scroller {
     z-index: 100;
     height: 50vh;
-    overflow: scroll;
 }
+
 #sticky {
     position: absolute;
     bottom: 0;
@@ -10,12 +10,17 @@
     width: 48%;
     z-index: 50;
 }
+
+#container{
+    height: 100%;
+    overflow-y: scroll;
+}
+
 .panel {
     width: 100%;
     padding: 20px;
 }
 .panel p {padding-right: 50%;}
-.panel:first-child {padding-top: 5vh;}
 .panel:last-child {padding-bottom: 45vh;}
 
 .graticule {

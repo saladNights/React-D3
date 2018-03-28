@@ -7,7 +7,23 @@ import trackData from '../../../data/track.json';
 
 class MapScrollerSVG extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            scrollTop: 0,
+            width: 0.9 * window.innerWidth / 2,
+            height: 0.9 * window.innerHeight / 2,
+            scrollLength: 0
+        };
+    }
+
     componentDidMount(){
+
+        const container = document.getElementById('container');
+
+        this.setState({
+            scrollLength: container.scrollHeight - this.state.height
+        });
 
         const el = ReactDOM.findDOMNode(this);
 
@@ -34,12 +50,49 @@ class MapScrollerSVG extends Component {
             .x(function(d) { return projection([d.lon, d.lat])[0]; })
             .y(function(d) { return projection([d.lon, d.lat])[1]; });
 
-        d3.select(el).append("path")
+        const track = d3.select(el).append("path")
             .attr("d",pathLine(trackData))
             .attr("fill","none")
             .attr("stroke", '#ff9933')
-            .attr("stroke-width", 3);
+            .attr("stroke-width", 3)
+            .style('stroke-dasharray', function(d) {
+                let l = d3.select(this).node().getTotalLength();
+                return l + 'px, ' + l + 'px';
+            })
+            .style('stroke-dashoffset', function(d) {
+                return d3.select(this).node().getTotalLength() + 'px';
+            });
+
+        const scrollEl = document.getElementById('container');
+        scrollEl.addEventListener('scroll', this.containerScrollHandler.bind(true, track));
     }
+
+    componentWillUnmount(){
+        const scrollEl = document.getElementById('container');
+        scrollEl.removeEventListener('scroll', this.containerScrollHandler);
+    }
+
+    containerScrollHandler = (track) => {
+        const scrollEl = document.getElementById('container');
+        const newScrollTop = scrollEl.scrollTop;
+
+        if (this.state.scrollTop !== newScrollTop) {
+
+            const trackScale = d3.scaleLinear()
+                .domain([0, this.state.scrollLength])
+                .range([0, track.node().getTotalLength()]);
+
+            track
+                .style('stroke-dashoffset', function(d) {
+                    return track.node().getTotalLength() - trackScale(newScrollTop) + 'px';
+                });
+
+            this.setState({
+                scrollTop: newScrollTop
+            });
+
+        }
+    };
 
     render(){
         return (
