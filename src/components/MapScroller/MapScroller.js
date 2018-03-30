@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import './MapScroller.css';
 import MapScrollerSVG from './MapScrollerSVG/MapScrollerSVG';
 
