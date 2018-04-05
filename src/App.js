@@ -1,29 +1,43 @@
 import React, { Component } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import BarChart from './components/BarChart/BarChart';
 import WorldMap from './components/WorldMap/WorldMap';
 import MapScroller from './components/MapScroller/MapScroller';
-import productPerceivedQuality from './data/dailyProductPerceivedQuality';
 
 class App extends Component {
   render() {
     return (
         <div className='App'>
             <div className='App-header'>
-                <h1>React & D3</h1>
+                <Router>
+                    <Link to="/">
+                        <h1>React & D3</h1>
+                    </Link>
+                </Router>
             </div>
-            <div className="example">
-                <h2>Bar Chart</h2>
-                <BarChart data={[7,10,2,3,12,4,1,15]} size={[500,500]} />
-            </div>
-            <div className="example">
-                <h2>Map</h2>
-                <WorldMap/>
-            </div>
-            <div className="example">
-                <h2>Map Scroller</h2>
-                <MapScroller/>
-            </div>
+
+            <Router>
+                <div className="menu">
+                    <ul>
+                        <li>
+                            <Link to="/barchart">BarChart</Link>
+                        </li>
+                        <li>
+                            <Link to="/worldmap">WorldMap</Link>
+                        </li>
+                        <li>
+                            <Link to="/mapscroller">MapScroller</Link>
+                        </li>
+                    </ul>
+                    <hr />
+                    <div className="example">
+                        <Route exact path="/barchart" component={BarChart} />
+                        <Route path="/worldmap" component={WorldMap} />
+                        <Route path="/mapscroller" component={MapScroller} />
+                    </div>
+                </div>
+            </Router>
         </div>
     );
   }

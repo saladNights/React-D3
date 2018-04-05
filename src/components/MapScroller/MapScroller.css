@@ -19,6 +19,7 @@
 .panel {
     width: 100%;
     padding: 20px;
+    box-sizing: border-box;
 }
 .panel p {padding-right: 50%;}
 .panel:last-child {padding-bottom: 45vh;}

@@ -12,31 +12,33 @@ class BarChart extends Component {
         this.createBarChart()
     }
     createBarChart = () => {
+        const data = [7,10,2,3,12,4,1,15];
+        const size = [500,500];
         const node = this.node;
-        const dataMax = max(this.props.data);
+        const dataMax = max(data);
         const yScale = scaleLinear()
             .domain([0, dataMax])
-            .range([0, this.props.size[1]]);
+            .range([0, size[1]]);
         select(node)
             .selectAll('rect')
-            .data(this.props.data)
+            .data(data)
             .enter()
             .append('rect');
 
         select(node)
             .selectAll('rect')
-            .data(this.props.data)
+            .data(data)
             .exit()
             .remove();
 
         select(node)
             .selectAll('rect')
-            .data(this.props.data)
+            .data(data)
             .style('fill', '#7f528c')
-            .attr('x', (d,i) => i * (this.props.size[1]/this.props.data.length))
-            .attr('y', d => this.props.size[1] - yScale(d))
+            .attr('x', (d,i) => i * (size[1]/data.length))
+            .attr('y', d => size[1] - yScale(d))
     .attr('height', d => yScale(d))
-            .attr('width', this.props.size[1]/this.props.data.length)
+            .attr('width', size[1]/data.length)
     };
     render() {
         return <svg ref={node => this.node = node}
